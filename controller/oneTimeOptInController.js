@@ -1,6 +1,6 @@
-import * as utils from "../helpers/utils.js";
+const utils = require("../helpers/utils.js");
 
-export const oneTimeOptIn = async (req, res) => {
+exports.oneTimeOptIn = async (req, res) => {
     try {
         let { groupName, email, name } = req.params;
         let oneUser;

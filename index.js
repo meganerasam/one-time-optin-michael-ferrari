@@ -1,8 +1,8 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
 
-import OneTimeOptInRouter from "./routes/oneTimeOptInRouter.js"
+const OneTimeOptInRouter = require("./routes/oneTimeOptInRouter.js");
 
 dotenv.config();
 const app = express();

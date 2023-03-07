@@ -1,8 +1,8 @@
-import axios from "axios";
+const axios = require("axios");
 
 const baseURL = "https://connect.mailerlite.com/";
 
-export const getAllGroups = async () => {
+exports.getAllGroups = async () => {
     try {
         let allGroups;
 
@@ -23,7 +23,7 @@ export const getAllGroups = async () => {
     }
 }
 
-export const getSubscribersBelongingToGroup = async (groupId) => {
+exports.getSubscribersBelongingToGroup = async (groupId) => {
     try {
         let allSubs;
 
@@ -44,7 +44,7 @@ export const getSubscribersBelongingToGroup = async (groupId) => {
     }
 }
 
-export const addSubscriberToGroup = async (userId, groupId) => {
+exports.addSubscriberToGroup = async (userId, groupId) => {
     try {
         let addedSub;
 
@@ -65,7 +65,7 @@ export const addSubscriberToGroup = async (userId, groupId) => {
     }
 }
 
-export const getOneSubscriberByEmail = async (email) => {
+exports.getOneSubscriberByEmail = async (email) => {
     try {
         let subs;
 
@@ -86,7 +86,7 @@ export const getOneSubscriberByEmail = async (email) => {
     }
 }
 
-export const getAllSubscribers = async () => {
+exports.getAllSubscribers = async () => {
     try {
         let allSubs;
 
@@ -107,7 +107,7 @@ export const getAllSubscribers = async () => {
     }
 }
 
-export const addNewSubscriber = async (user) => {
+exports.addNewSubscriber = async (user) => {
     try {
         let newSub;
 
