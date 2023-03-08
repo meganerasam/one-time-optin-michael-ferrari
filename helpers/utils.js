@@ -2,11 +2,11 @@ const axios = require("axios");
 
 const baseURL = "https://connect.mailerlite.com/";
 
-exports.getAllGroups = async () => {
+exports.getAllGroups = async (groupName) => {
     try {
         let allGroups;
 
-        await axios.get(`${baseURL}api/groups?filter[name]=webi_partenaires`, {
+        await axios.get(`${baseURL}api/groups?filter[name]=${groupName}`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${process.env.MAILERLITE_API}`,
@@ -61,6 +61,27 @@ exports.addSubscriberToGroup = async (userId, groupId) => {
         return addedSub;
     } catch (error) {
         console.log("getSubscribersBelongingToGroup");
+        return null;
+    }
+}
+
+exports.updateSubscriberFields = async (userId, data) => {
+    try {
+        let updatedSub;
+
+        await axios.put(`${baseURL}api/subscribers/${userId}`, { fields: data }, {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.MAILERLITE_API}`,
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            updatedSub = response.data.data
+        });
+
+        return updatedSub;
+    } catch (error) {
+        console.log("updateSubscriberFields");
         return null;
     }
 }
