@@ -6,7 +6,7 @@ exports.getAllGroups = async () => {
     try {
         let allGroups;
 
-        await axios.get(`${baseURL}api/groups`, {
+        await axios.get(`${baseURL}api/groups?filter[name]=webi_partenaires`, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${process.env.MAILERLITE_API}`,
@@ -18,7 +18,7 @@ exports.getAllGroups = async () => {
 
         return allGroups;
     } catch (error) {
-        console.log("getAllSubscribers", error);
+        console.log("getAllSubscribers");
         return null;
     }
 }
@@ -39,7 +39,7 @@ exports.getSubscribersBelongingToGroup = async (groupId) => {
 
         return allSubs;
     } catch (error) {
-        console.log("getSubscribersBelongingToGroup", error);
+        console.log("getSubscribersBelongingToGroup");
         return null;
     }
 }
@@ -60,7 +60,7 @@ exports.addSubscriberToGroup = async (userId, groupId) => {
 
         return addedSub;
     } catch (error) {
-        console.log("getSubscribersBelongingToGroup", error);
+        console.log("getSubscribersBelongingToGroup");
         return null;
     }
 }
@@ -81,7 +81,7 @@ exports.getOneSubscriberByEmail = async (email) => {
 
         return subs;
     } catch (error) {
-        console.log("getOneSubscriberByEmail", error);
+        console.log("getOneSubscriberByEmail");
         return null;
     }
 }
@@ -102,7 +102,7 @@ exports.getAllSubscribers = async () => {
 
         return allSubs;
     } catch (error) {
-        console.log("getAllSubscribers", error);
+        console.log("getAllSubscribers");
         return null;
     }
 }
@@ -123,7 +123,7 @@ exports.addNewSubscriber = async (user) => {
 
         return newSub;
     } catch (error) {
-        console.log("addNewSubscriber", error);
+        console.log("addNewSubscriber");
         return null;
     }
 }
