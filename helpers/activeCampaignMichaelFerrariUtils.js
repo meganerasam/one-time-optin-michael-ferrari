@@ -1,26 +1,27 @@
+const axios = require("axios");
+
 // Fetch specific user by email
 exports.findUserByEmail = async (email) => {
     try {
-        let contact;
+        let result;
+
         let optionsGET = {
             method: 'GET',
             headers: {
                 accept: 'application/json',
-                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API}`
-            }
+                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}`
+            },
         };
 
-        // Use the previous ID received during user creation
-        await fetch(`${process.env.URL_ACTIVE_CAMPAIGN_API}/api/3/contacts?email=${email}`, optionsGET)
-            .then(response => response.json())
-            .then(response => {
-                contact = response.contacts[0];
-            })
-            .catch(err => console.error(err));
+        await axios.get(`${process.env.URL_ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}/api/3/contacts?email=${email}`, {
+            headers: optionsGET.headers
+        }).then(response => {
+            result = response.data.contacts[0]
+        }).catch(err => console.error(err));
 
-        return contact;
+        return result;
     } catch (error) {
-        console.log("Error in findUserById", error)
+        console.log("Error in createContact", error)
     }
 }
 
@@ -42,17 +43,16 @@ exports.createContact = async (email, firstName) => {
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API}`
+                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}`
             },
             body: JSON.stringify(body)
         };
 
-        await fetch(`${process.env.URL_ACTIVE_CAMPAIGN_API}/api/3/contacts`, optionsPOST)
-            .then(response => response.json())
-            .then(response => {
-                result = response.contact
-            })
-            .catch(err => console.error(err));
+        await axios.post(`${process.env.URL_ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}/api/3/contacts`, body , {
+            headers: optionsPOST.headers
+        }).then(response => {
+            result = response.data.contact
+        }).catch(err => console.error(err));
 
         return result;
     } catch (error) {
@@ -77,17 +77,16 @@ exports.addTagToContact = async (contactId, tagId) => {
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API}`
+                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}`
             },
             body: JSON.stringify(body)
         };
 
-        await fetch(`${process.env.URL_ACTIVE_CAMPAIGN_API}/api/3/contactTags`, optionsPOST)
-            .then(response => response.json())
-            .then(response => {
-                result = response
-            })
-            .catch(err => console.error(err));
+        await axios.post(`${process.env.URL_ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}/api/3/contactTags`, body, {
+            headers: optionsPOST.headers
+        }).then(response => {
+            result = response.data
+        }).catch(err => console.error(err));
 
         return result;
     } catch (error) {
@@ -113,17 +112,16 @@ exports.addContactToList = async (contactId, listId) => {
             headers: {
                 accept: 'application/json',
                 'content-type': 'application/json',
-                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API}`
+                'Api-Token': `${process.env.ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}`
             },
             body: JSON.stringify(body)
         };
 
-        await fetch(`${process.env.URL_ACTIVE_CAMPAIGN_API}/api/3/contactLists`, optionsPOST)
-            .then(response => response.json())
-            .then(response => {
-                result = response.contactList
-            })
-            .catch(err => console.error(err));
+        await axios.post(`${process.env.URL_ACTIVE_CAMPAIGN_API_MICHAEL_FERRARI}/api/3/contactLists`, body, {
+            headers: optionsPOST.headers
+        }).then(response => {
+            result = response.data.contactList
+        }).catch(err => console.error(err));
 
         return result;
     } catch (error) {
